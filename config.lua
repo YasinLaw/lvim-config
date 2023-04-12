@@ -24,7 +24,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 lvim.keys.normal_mode["rn"] = vim.lsp.buf.rename
 
-lvim.keys.normal_mode["<leader>lg"] = ":Telescope live_grep<cr>"
+lvim.keys.normal_mode["<leader>sg"] = ":Telescope live_grep<cr>"
 lvim.keys.normal_mode["<leader>sw"] = ":Telescope grep_string<cr>"
 
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
