@@ -104,7 +104,7 @@ formatters.setup({
 
 local linters = require("lvim.lsp.null-ls.linters")
 linters.setup({
-	{ command = "cpplint" },
+	-- { command = "cpplint" },
 
 	{ command = "golangci-lint" },
 
@@ -149,3 +149,27 @@ lvim.plugins = {
 --     require("nvim-treesitter.highlight").attach(0, "bash")
 --   end,
 -- })
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.offsetEncoding = { "utf-16" }
+require("lspconfig").clangd.setup({ capabilities = capabilities })
+
+local dap = require("dap")
+dap.adapters.cppdbg = {
+	id = "cppdbg",
+	type = "executable",
+	command = "/home/luo/.local/share/nvim/mason/bin/OpenDebugAD7",
+}
+
+dap.configurations.cpp = {
+	{
+		name = "Launch file",
+		type = "cppdbg",
+		request = "launch",
+		program = function()
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+		end,
+		cwd = "${workspaceFolder}",
+		stopAtEntry = true,
+	},
+}
